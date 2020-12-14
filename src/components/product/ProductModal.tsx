@@ -1,4 +1,4 @@
-import React, { useRef, SyntheticEvent, useState } from 'react';
+import React, { useRef, SyntheticEvent, useState, useEffect } from 'react';
 
 import { FaHeart } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
@@ -15,6 +15,10 @@ type ProductModalProps = {
 const ProductModal: React.FC<ProductModalProps> = ({ toggleModal, openModal, product, addToCart }) => {
   if (!product) return null;
   const [value, setValue] = useState(1);
+  useEffect(() => {
+    setValue(1);
+  }, [setValue, openModal]);
+
   const modalRef = useRef<HTMLDivElement>(null);
   const handleCloseModal = (e: SyntheticEvent) => {
     if (e.target === modalRef.current) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { BaseSyntheticEvent } from 'react';
 import { GrClose } from 'react-icons/gr';
 
 type Props = {
@@ -7,6 +7,10 @@ type Props = {
 };
 
 const HeaderSearch: React.FC<Props> = ({ active, toggleSearch }) => {
+  const handleSearch = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    toggleSearch(false);
+  };
   return (
     <div
       className={`${
@@ -14,11 +18,7 @@ const HeaderSearch: React.FC<Props> = ({ active, toggleSearch }) => {
       }  animate-fade bg-gray-100 z-50 fixed top-0 right-0 w-full h-screen flex items-center justify-center`}
     >
       <div className="w-3/5">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={handleSearch}>
           <input
             placeholder="Search product"
             className="w-full border-b-2 border-black-300 text-6xl bg-gray-100 focus:outline-none focus:placeholder-gray-100"

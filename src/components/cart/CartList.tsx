@@ -11,7 +11,7 @@ type Props = {
 const CartList: React.FC<Props> = ({ carts, addToCart, removeCart }) => {
   const renderCarts = () => {
     return carts.map((item: CartItem) => {
-      return <CartItemCom cartItem={item} addToCart={addToCart} removeCart={removeCart} />;
+      return <CartItemCom cartItem={item} addToCart={addToCart} removeCart={removeCart} key={item.product.id} />;
     });
   };
   return (

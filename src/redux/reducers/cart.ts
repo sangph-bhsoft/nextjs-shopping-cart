@@ -46,7 +46,7 @@ const cartReducer = createReducer<CartState, CartActionType>(INITIAL_STATE, {
           ? {
               ...item,
               quantity: item.quantity - quantity,
-              totalPrice: item.totalPrice + quantity - item.product.price,
+              totalPrice: item.totalPrice - quantity * item.product.price,
             }
           : { ...item },
       );
@@ -54,9 +54,12 @@ const cartReducer = createReducer<CartState, CartActionType>(INITIAL_STATE, {
     setListCartToLocalStorage(newState.carts);
     return newState;
   },
-  [CLEAR_CART]: () => {
+  [CLEAR_CART]: (state) => {
     clearCartFromLocalStorage();
-    return INITIAL_STATE;
+    return {
+      ...state,
+      carts: [],
+    };
   },
 });
 

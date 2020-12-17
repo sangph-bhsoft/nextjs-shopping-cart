@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { BaseSyntheticEvent, useCallback, useState } from 'react';
 import { FaHeart, FaShoppingCart, FaSearch } from 'react-icons/fa';
 import { usdCurrency } from '../../helper';
@@ -23,10 +24,12 @@ const ProductItem: React.FC<ProductItemProps> = ({ toggleModal, product, addToCa
   return (
     <div onMouseEnter={toggleImage} onMouseLeave={toggleImage} className="relative">
       <div>
-        <a href="/">
-          <img className={`${show ? 'hidden' : ''} animate-show `} src={product.imageUrl1} alt="prd1" />
-          <img className={`${!show ? 'hidden' : ''} animate-show `} src={product.imageUrl2} alt="prd2" />
-        </a>
+        <Link href={`/product/${product.id}`}>
+          <div className="cursor-pointer">
+            <img className={`${show ? 'hidden' : ''} animate-show `} src={product.imageUrl1} alt="prd1" />
+            <img className={`${!show ? 'hidden' : ''} animate-show `} src={product.imageUrl2} alt="prd2" />
+          </div>
+        </Link>
         <div className="absolute flex flex-col top-3 left-3 z-10 ">
           <div className="bg-blue-400 text-white w-12 h-12 flex items-center justify-center rounded-full">-10%</div>
           <div className="bg-orange-400 text-white w-12 h-12 flex items-center justify-center rounded-full mt-2">
@@ -54,9 +57,9 @@ const ProductItem: React.FC<ProductItemProps> = ({ toggleModal, product, addToCa
         </div>
       </div>
       <div className="mt-2">
-        <h3 className="text-black-400 text-xl">
-          <a href="/">{product.name}</a>
-        </h3>
+        <Link href={`/product/${product.id}`}>
+          <h3 className="text-black-400 text-xl cursor-pointer">{product.name}</h3>
+        </Link>
         <div>
           <span className="text-sm text-gray-300 line-through">{usdCurrency(product.price)}</span>
           <span className="text-black-100 text-xl ml-2">{usdCurrency(product.promotion)}</span>

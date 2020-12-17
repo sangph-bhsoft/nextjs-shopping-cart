@@ -23,6 +23,9 @@ export interface ProductListState {
 
 export interface ProductState {
   obj: Product;
+  productAsync: Product;
+  loading: boolean;
+  error: string;
 }
 
 export interface AppState {

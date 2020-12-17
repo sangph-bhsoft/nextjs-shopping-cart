@@ -1,7 +1,7 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { fetchProductsSever } from '../../services/productService';
 import { AppState } from '../../types/index';
-import { PRODUCT_LOAD, setErrorProducts, setProducts } from '../actions';
+import { PRODUCTS_LOAD, setErrorProducts, setProducts } from '../actions';
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -17,5 +17,5 @@ function* fetchProducts() {
 }
 
 export default function* watchTestSaga() {
-  yield takeEvery(PRODUCT_LOAD, fetchProducts);
+  yield takeEvery(PRODUCTS_LOAD, fetchProducts);
 }

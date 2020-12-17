@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { PRODUCT_LOAD, ProductsActionType, PRODUCT_LOAD_SUCCESS, PRODUCT_LOAD_FAILURE } from '../actions';
+import { PRODUCTS_LOAD, ProductsActionType, PRODUCTS_LOAD_SUCCESS, PRODUCTS_LOAD_FAILURE } from '../actions';
 import { ProductListState } from '../../types';
 
 const INITIAL_STATE: ProductListState = {
@@ -10,13 +10,13 @@ const INITIAL_STATE: ProductListState = {
   hasMore: true,
 };
 const productListReducer = createReducer<ProductListState, ProductsActionType>(INITIAL_STATE, {
-  [PRODUCT_LOAD]: (state) => {
+  [PRODUCTS_LOAD]: (state) => {
     return {
       ...state,
       loading: true,
     };
   },
-  [PRODUCT_LOAD_SUCCESS]: (state, action) => {
+  [PRODUCTS_LOAD_SUCCESS]: (state, action) => {
     return {
       ...state,
       list: [...state.list, ...action.payload],
@@ -25,7 +25,7 @@ const productListReducer = createReducer<ProductListState, ProductsActionType>(I
       hasMore: !!action.payload.length,
     };
   },
-  [PRODUCT_LOAD_FAILURE]: (state, action) => {
+  [PRODUCTS_LOAD_FAILURE]: (state, action) => {
     return {
       ...state,
       loading: false,
